@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -11,6 +13,33 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-animate {
+  animation: gradientShift 15s ease infinite;
+  background-size: 600% 600%;
+}
+
+.bg-gradient-multiverse {
+  background: linear-gradient(-45deg, #2e026d, #15162c, #3b0764, #1e1b4b);
+  background-size: 400% 400%;
+  animation: gradient-x 20s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+.bg-animation-6s {
+  animation: gradient-animation 6s ease infinite;
 }
 
 a {
@@ -53,6 +82,11 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {
