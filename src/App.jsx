@@ -5,12 +5,6 @@ import { Parallax } from "react-scroll-parallax"; // Add for parallax effect
 const glowingBorder = "border-2 border-purple-600 animate-constant-glow";
 const hoverGlow = "hover:border-purple-400 hover:shadow-[0_0_30px_rgba(128,0,255,0.8)]";
 
-const importImages = (context) => {
-  return context.keys().map(context);
-};
-
-const galleryImages = importImages(require.context("/gallery", false, /\.(png|jpe?g)$/));
-
 const Card = ({ title, children }) => (
   <motion.div
     whileHover={{ scale: 1.05, rotate: 0.5 }}
@@ -98,6 +92,7 @@ const App = () => {
       <div className="fixed inset-0 -z-10">
         <div className="min-h-screen w-full animate-gradient-x bg-[linear-gradient(-45deg,_#0e0e0e,_#1a1a1a,_#3e1e80,_#5a2d8c,_#6f3b9b,_#301c4b,_#2a1531)] bg-[length:400%_400%] bg-animation-6s" />
       </div>
+
       {/* Scroll Indicator */}
       <ScrollIndicator />
 
@@ -135,11 +130,13 @@ const App = () => {
         </motion.p>
       </header>
 
+      {/* Parallax Section Example */}
       <Section id="skills" title="Skills">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <Card title="Software Development">
-            <blockquote>I design and build software applications that run on desktops, mobile devices, 
-              or other systems beyond the browser.</blockquote><br />
+            <blockquote>
+              I design and build software applications that run on desktops, mobile devices, or other systems beyond the browser.
+            </blockquote><br />
             <strong>What I know</strong><br />
             <p>
               <ul className="list-disc list-inside text-gray-300">
@@ -154,128 +151,29 @@ const App = () => {
               </ul>
             </p>
           </Card>
-          <Card title="Web Development">
-            <blockquote>I create and maintain websites and web apps from 
-              responsive UIs to powerful backend systems.</blockquote><br />
-            <strong>What I know</strong><br />
-            <p>
-              <ul className="list-disc list-inside text-gray-300">
-                <li>HTML, CSS, JavaScript</li>
-                <li>Frameworks like React, Vue, or Angular</li>
-                <li>Backend tools like Node.js, Ruby on Rails, ASP.NET, and PHP</li>
-                <li>Responsive and mobile-first design</li>
-                <li>Database integration (MongoDB, PostgreSQL, etc.)</li>
-                <li>Authentication and security best practices</li>
-                <li>Git for version control</li>
-                <li>Deployment tools like Docker, GHP, and GHA</li>
-              </ul>
-            </p>
-          </Card>
-          <Card title="UX Design">
-          <blockquote>I design user experiences that are intuitive, accessible, and enjoyable.
-             I focus on how users interact with products ensuring every touchpoint feels smooth, 
-             purposeful, and user-centered.</blockquote><br />
-            <strong>What I know</strong><br />
-            <p>
-              <ul className="list-disc list-inside text-gray-300">
-                <li>User Research <i>(interviews, surveys, personas)</i></li>
-                <li>Wireframing & Prototyping <i>(low to high fidelity)</i></li>
-                <li>Information Architecture</li>
-                <li>User Flows & Journey Mapping</li>
-                <li>Usability Testing</li>
-                <li>Interaction Design</li>
-                <li>Design Systems & UI Consistency</li>
-              </ul>
-            </p>
-          </Card>
-          <Card title="Community Leadership">
-            <blockquote>
-              As the founder of SYNTAX Org (<i>Former IT Organization</i>) and FRX Esports, 
-              I lead with vision, organize with purpose, and empower people through collaboration. 
-              I build inclusive spaces where creativity, innovation, and passion can thrive whether in 
-              tech, gaming, or culture.
-            </blockquote><br/>
-            <strong>What I’ve Done</strong>
-            <ul className="list-disc list-inside text-gray-300">
-              <li>Founded and grew <strong>SYNTAX Org</strong>, a community-driven tech community that is inspired in multiverse concept.</li>
-              <li>Launched FRX Esports, uniting competitive gaming with creative storytelling and integrating esports with education.</li>
-              <li>Hosted events, tournaments, workshops, and leadership sessions.</li>
-              <li>Built systems to engage members, grow participation, and inspire new leaders.</li>
-              <li>Bridged diverse talents such as developers, designers, gamers, and creatives.</li>
-            </ul>
-          </Card>
-          <Card title="Content Writing">
-            <blockquote>
-              I write meaningful content that connects, informs, and inspires. 
-              Whether it's for tech, esports, storytelling, or community, 
-              I write with purpose, balancing creativity with clarity across platforms.
-            </blockquote><br />
-            <strong>What I Write</strong>
-            <ul className="list-disc list-inside text-gray-300">
-              <li>Articles & Blogs</li>
-              <li>Website & UI/UX Copy</li>
-              <li>Esports Content (announcements, faction lore, battlecries)</li>
-              <li>Branding & Taglines</li>
-              <li>Social Media Captions</li>
-              <li>Creative Lore (<i>for FRXVerse</i>)</li>
-            </ul>
-            <br />
-            <strong>Skills & Knowledge</strong>
-            <ul className="list-disc list-inside text-gray-300">
-              <li>Creative & Technical Writing</li>
-              <li>SEO Writing Basics</li>
-              <li>Audience Targeting & Engagement</li>
-              <li>Copyreading</li>
-              <li>Research & Story Development</li>
-              <li>UX Writing Principles</li>
-              <li>Canva & Figma (for content + visuals)</li>
-              <li>AI Tools & Collaboration (like ChatGPT, Notion AI)</li>
-            </ul>
-          </Card>
+          {/* Add other cards here */}
         </div>
       </Section>
 
-      <Section id="projects" title="Projects">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <Card title="FRXVerse: Eclipticode">
-            An epic multiversal saga blending myth, cyberpunk, and AI apocalypse — part of the ongoing <em>FRXVerse</em> universe.
-          </Card>
-          <Card title="FRX Esports Factions">
-            Design and lore building for cyberpunk-inspired competitive teams: FRX RAZE, FURY, VENOM, and more.
-          </Card>
-          <Card title="Multiversal Gallery Tool">
-            A visual interface for exploring alternate timelines and character lore within the FRX multiverse.
-          </Card>
-        </div>
-      </Section>
-
-      <Section id="affiliations" title="Affiliations">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <Card title="FRX Esports">Founder & Creative Lead — Leading the fusion of gaming and mythic storytelling.</Card>
-          <Card title="Open Source">Active contributor to GitHub communities and tools.</Card>
-          <Card title="Hackathons">Recognized in multiple tech competitions for innovative designs.</Card>
-        </div>
-      </Section>
-
+      {/* Gallery Section */}
       <Section id="gallery" title="Activity Gallery">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {galleryImages.map((image, index) => (
+          {[1, 2, 3, 4, 5, 6].map((i) => (
             <motion.div
-              key={index}
+              key={i}
               whileHover={{ scale: 1.1, rotate: 1 }}
               className={`overflow-hidden rounded-xl cursor-pointer transition duration-300 ease-in-out ${glowingBorder} ${hoverGlow}`}
-              onClick={() => setSelectedImage(image)}
+              onClick={() => setSelectedImage(`/gallery/image${i}.png`)}
             >
               <img
-                src={image}
-                alt={`Gallery ${index + 1}`}
+                src={`/gallery/image${i}.png`}
+                alt={`Gallery ${i}`}
                 className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
               />
             </motion.div>
           ))}
         </div>
 
-        {/* Fullscreen Preview Modal */}
         <AnimatePresence>
           {selectedImage && (
             <motion.div
@@ -306,14 +204,6 @@ const App = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </Section>
-
-      <Section id="contact" title="Contact">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <Card title="Email">your.email@example.com</Card>
-          <Card title="GitHub">github.com/yourhandle</Card>
-          <Card title="LinkedIn">linkedin.com/in/yourprofile</Card>
-        </div>
       </Section>
 
       <footer className="text-center py-8 border-t border-purple-800 text-purple-500 text-sm">
