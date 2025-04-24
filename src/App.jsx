@@ -1,9 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Parallax } from "react-scroll-parallax"; // Add for parallax effect
+import { Parallax } from "react-scroll-parallax";
 
 const glowingBorder = "border-2 border-purple-600 animate-constant-glow";
 const hoverGlow = "hover:border-purple-400 hover:shadow-[0_0_30px_rgba(128,0,255,0.8)]";
+
+const safeLocalStorage = {
+  getItem: (key) => {
+    try {
+      return window.localStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  },
+  setItem: (key, value) => {
+    try {
+      window.localStorage.setItem(key, value);
+    } catch {
+      // Silent fail
+    }
+  },
+};
 
 const Card = ({ title, children }) => (
   <motion.div
@@ -18,10 +35,7 @@ const Card = ({ title, children }) => (
 );
 
 const Section = ({ id, title, children }) => (
-  <section
-    id={id}
-    className="snap-start min-h-screen py-24 px-6 md:px-20"
-  >
+  <section id={id} className="snap-start min-h-screen py-24 px-6 md:px-20">
     <motion.h2
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -64,7 +78,6 @@ const ScrollIndicator = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -88,20 +101,14 @@ const App = () => {
 
   return (
     <main className="font-sans text-white snap-y snap-mandatory overflow-y-scroll overflow-x-hidden h-screen scroll-smooth w-full relative">
-      {/* Animated background layer */}
       <div className="fixed inset-0 -z-10">
         <div className="min-h-screen w-full animate-gradient-x bg-[linear-gradient(-45deg,_#0e0e0e,_#1a1a1a,_#3e1e80,_#5a2d8c,_#6f3b9b,_#301c4b,_#2a1531)] bg-[length:400%_400%] bg-animation-6s" />
       </div>
 
-      {/* Scroll Indicator */}
       <ScrollIndicator />
-
       <Navbar />
 
-      <header
-        id="profile"
-        className="snap-start text-center py-40 pt-48"
-      >
+      <header id="profile" className="snap-start text-center py-40 pt-48">
         <motion.img
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -124,38 +131,31 @@ const App = () => {
           transition={{ delay: 0.6 }}
           className="text-lg text-gray-400"
         >
-          Information Technology Educator • MSIT Student • Database Engineer • 
-          UX Designer • Android Programmer • <br/> Web Developer • Web3 Enthusiast • 
-          Esports Education Advocate • Speaker 
+          Information Technology Educator • MSIT Student • Database Engineer • UX Designer • Android Programmer • <br /> Web Developer • Web3 Enthusiast • Esports Education Advocate • Speaker
         </motion.p>
       </header>
 
-      {/* Parallax Section Example */}
       <Section id="skills" title="Skills">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <Card title="Software Development">
             <blockquote>
               I design and build software applications that run on desktops, mobile devices, or other systems beyond the browser.
             </blockquote><br />
-            <strong>What I know</strong><br />
-            <p>
-              <ul className="list-disc list-inside text-gray-300">
-                <li>Programming Languages: <i>C/C++, C#, Java, Python, VB.Net</i></li>
-                <li>Object-oriented Programming (OOP)</li>
-                <li>Data Structures & Algorithms</li>
-                <li>Software Architecture & Design Patterns</li>
-                <li>Debugging and Testing Techniques</li>
-                <li>Database Engineering</li>
-                <li>API Integration</li>
-                <li>Mobile / Desktop Development</li>
-              </ul>
-            </p>
+            <strong>What I know</strong>
+            <ul className="list-disc list-inside text-gray-300">
+              <li>Programming Languages: <i>C/C++, C#, Java, Python, VB.Net</i></li>
+              <li>Object-oriented Programming (OOP)</li>
+              <li>Data Structures & Algorithms</li>
+              <li>Software Architecture & Design Patterns</li>
+              <li>Debugging and Testing Techniques</li>
+              <li>Database Engineering</li>
+              <li>API Integration</li>
+              <li>Mobile / Desktop Development</li>
+            </ul>
           </Card>
-          {/* Add other cards here */}
         </div>
       </Section>
 
-      {/* Gallery Section */}
       <Section id="gallery" title="Activity Gallery">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {[1, 2, 3, 4, 5, 6].map((i) => (
